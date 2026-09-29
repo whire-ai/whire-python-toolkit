@@ -1,14 +1,14 @@
 [project]
 name = "whire"
-version = "0.1.0"
-description = "Python SDK for the Whire Payments API — built for AI agents"
+version = "0.2.0"
+description = "Python SDK for the Whire agent-payouts API — payers, mandates, signed authorizations, payouts, x402 and MCP, built for AI agents"
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.11"
 authors = [{name = "Whire"}]
-keywords = ["payments", "ai", "agents", "sdk", "fintech"]
+keywords = ["payments", "ai", "agents", "sdk", "fintech", "mcp", "x402", "sepa"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
@@ -26,13 +26,14 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://whire.ai"
-Documentation = "https://docs.whire.ai"
+Documentation = "https://sandbox.whire.ai/docs"
 Repository = "https://github.com/whire-ai/whire-python-sdk"
 
 [project.optional-dependencies]
 dev = [
     "pytest>=8.0.0",
     "pytest-asyncio>=0.23.0",
+    "jsonschema>=4.0.0",
 ]
 
 [build-system]
@@ -49,8 +50,10 @@ include = [
     "README.md",
     "LICENSE",
     "CHANGELOG.md",
+    "RUNNING_AGAINST_A_DEPLOYMENT.md",
     "pyproject.toml",
 ]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
+markers = ["live: hits the shared sandbox (WHIRE_LIVE=1)"]

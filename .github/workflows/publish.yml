@@ -5,9 +5,15 @@ on:
     types: [published]
 
 jobs:
+  test:
+    # Same tests and pip-audit as CI, on the exact commit being released.
+    uses: ./.github/workflows/ci.yml
+
   publish:
+    needs: test # nothing is uploaded unless every test job passed
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       id-token: write
 
     steps:
